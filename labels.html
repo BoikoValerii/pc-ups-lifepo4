@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<title>Наклейки ИБП ПК</title>
+<style>
+@page{size:A4;margin:10mm}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,"Segoe UI",sans-serif;color:#000;background:#fff}
+h2{font-size:11pt;margin:4mm 0 2mm;font-weight:normal;color:#555}
+.grid{display:flex;flex-wrap:wrap;gap:3mm}
+.lbl{border:0.3mm dashed #777;padding:1.5mm 2.5mm;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.lbl b{font-size:13pt;line-height:1.15}.lbl span{font-size:8.5pt;line-height:1.2}
+.big{width:90mm;height:22mm}.mid{width:60mm;height:18mm}.sm{width:44mm;height:14mm}
+.sm b{font-size:11pt}
+.warn{border:0.6mm solid #000}
+/* cable flag: same text on both halves, fold on centre line around cable */
+.flag{width:93mm;height:13mm;border:0.3mm dashed #777;display:flex}
+.flag div{flex:1;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:9pt;text-align:center;padding:0 1mm}
+.flag .c{flex:0 0 6mm;border-left:0.3mm dotted #aaa;border-right:0.3mm dotted #aaa}
+.note{font-size:8pt;color:#555;margin-top:3mm}
+</style></head><body>
+
+<h2>Коробка электроники — гнёзда DC099</h2>
+<div class="grid">
+<div class="lbl mid"><b>24 В ВХОД</b><span>от блока PROLUM</span></div>
+<div class="lbl mid"><b>ОТ АКБ</b><span>12,8 В → DC-DC (через F2)</span></div>
+<div class="lbl mid"><b>К ПК</b><span>18,5 В → на D2</span></div>
+<div class="lbl mid"><b>К АКБ</b><span>зарядка 14,0 В → на D3</span></div>
+</div>
+
+<h2>Крышки коробок</h2>
+<div class="grid">
+<div class="lbl big"><b>ИБП ПК — электроника</b><span>DC-DC 18,5 В · зарядка XL4016 14,0 В · ESP32<br>Минусы всех веток → P− BMS</span></div>
+<div class="lbl big"><b>ИДЕАЛЬНЫЕ ДИОДЫ D1 · D2 · D3</b><span>D1 DAJING · D2 DC-DC → ПК · D3 зарядка → АКБ<br>IN = источник, OUT = нагрузка</span></div>
+<div class="lbl big warn"><b>LiFePO4 12,8 В 100 А·ч</b><span>НЕ ЗАМЫКАТЬ КЛЕММЫ! Нагрузку — только на P− BMS (не B−)<br>Заряд 14,0 В · разряд до 10,8 В</span></div>
+</div>
+
+<h2>Предохранители (на держатели)</h2>
+<div class="grid">
+<div class="lbl sm"><b>F1 40 А</b><span>ИБП FSP / монитор</span></div>
+<div class="lbl sm"><b>F2 10 А</b><span>DC-DC / ПК</span></div>
+<div class="lbl sm"><b>F3 10 А</b><span>зарядка</span></div>
+<div class="lbl sm"><b>F4 2 А</b><span>ESP32</span></div>
+</div>
+
+<h2>Флажки на кабели — обернуть вокруг кабеля по центру, половинки склеить</h2>
+<div class="grid">
+<div class="flag"><div>DAJING → D1</div><div class="c"></div><div>DAJING → D1</div></div>
+<div class="flag"><div>ИЗ КОРОБКИ «К ПК» → D2</div><div class="c"></div><div>ИЗ КОРОБКИ «К ПК» → D2</div></div>
+<div class="flag"><div>ИЗ КОРОБКИ «К АКБ» → D3</div><div class="c"></div><div>ИЗ КОРОБКИ «К АКБ» → D3</div></div>
+<div class="flag"><div>НА ПК (XT60)</div><div class="c"></div><div>НА ПК (XT60)</div></div>
+<div class="flag"><div>НА АКБ через F3</div><div class="c"></div><div>НА АКБ через F3</div></div>
+<div class="flag"><div>АКБ → F2 → «ОТ АКБ»</div><div class="c"></div><div>АКБ → F2 → «ОТ АКБ»</div></div>
+<div class="flag"><div>АКБ → F1 → FSP</div><div class="c"></div><div>АКБ → F1 → FSP</div></div>
+<div class="flag"><div>PROLUM 24 В</div><div class="c"></div><div>PROLUM 24 В</div></div>
+</div>
+
+<h2>Мелкие — полярность XT60 / концы проводов</h2>
+<div class="grid">
+<div class="lbl sm"><b>+</b><span>плюс</span></div><div class="lbl sm"><b>+</b><span>плюс</span></div><div class="lbl sm"><b>+</b><span>плюс</span></div><div class="lbl sm"><b>+</b><span>плюс</span></div>
+<div class="lbl sm"><b>−</b><span>минус (P−)</span></div><div class="lbl sm"><b>−</b><span>минус (P−)</span></div><div class="lbl sm"><b>−</b><span>минус (P−)</span></div><div class="lbl sm"><b>−</b><span>минус (P−)</span></div>
+</div>
+<p class="note">Печать: масштаб 100 % («Фактический размер»), без полей браузера. Резать по пунктиру, клеить прозрачным скотчем поверх.</p>
+</body></html>

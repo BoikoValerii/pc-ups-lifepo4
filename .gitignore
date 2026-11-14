@@ -1,0 +1,4 @@
+firmware/pc_ups/secrets.h
+firmware/build/
+firmware/libraries/
+*.log
