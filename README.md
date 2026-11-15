@@ -6,6 +6,9 @@ ESP32 читает JK BMS по Bluetooth, шлёт сообщения в Telegra
 
 ## Схема
 
+![Общая схема](docs/img/schema.png)
+
+
 ```
 DAJING 19 В ──D1──┐
                   ├──► ПК + монитор
@@ -17,17 +20,26 @@ PROLUM 24 В ─► XL4016 (CV 14,0 В) ──D3──► батарея
 
 - Батарея: 4× EVE LF100LA (100 А·ч), JK BMS B1A8S20P — настройки в [jk-bms-settings.md](jk-bms-settings.md).
 - Идеальные диоды XL74610 — [diodes.html](diodes.html); подключение ESP32 — [esp32.html](esp32.html); общая схема — [schema.html](schema.html); наклейки для печати — [labels.html](labels.html) / [labels.pdf](labels.pdf).
+![Идеальные диоды](docs/img/diodes.png)
+
 - Напряжение DC-DC держать **ниже** адаптера 19 В — иначе от сети нагрузку берёт батарея и зарядка почти стоит.
 - Ограничение тока (CC) на DC-DC поднять: при срабатывании выход проседает до ~11,6 В и монитор мигает.
 - У DC-DC нет защиты от КЗ на выходе: подстраивать только с крокодилами и пластиковой отвёрткой.
 
 ## Прошивка ESP32 (`firmware/pc_ups`)
 
+![Подключение ESP32](docs/img/esp32.png)
+
+
 - Читает BMS по BLE (протокол JK02_32S, FFE0/FFE1): напряжение, ток, SOC, ячейки, температуры.
 - Сообщения в Telegram (только отправка, с очередью): пропала/вернулась сеть, заряд 30 %, выключение ПК при 20 % или ячейке < 3,00 В, потеря связи с BMS.
 - Веб: `/` — страница, `/data` — JSON, `/scan` — видимые BLE-устройства, `/diag` — журнал сбоев, `/raw`, `/ble?pause=N`.
 - Сторож BLE: нет данных 3 мин — сброс Bluetooth, 10 мин — перезапуск ESP (не чаще 3 раз подряд).
 - Обновление по Wi-Fi (ArduinoOTA).
+
+| Веб-страница ESP | Приложение JK BMS |
+|---|---|
+| <img src="docs/img/web.png" width="400"> | <img src="docs/img/jk-bms-app.png" width="300"> |
 
 Сборка:
 
@@ -49,6 +61,12 @@ arduino-cli compile --fqbn "esp32:esp32:esp32:PartitionScheme=min_spiffs,FlashMo
 ```
 powershell -ExecutionPolicy Bypass -File install-pc-shutdown.ps1
 ```
+
+## Фото
+
+| DC-DC 400 Вт и коробка электроники | Коробка изнутри | USB-зарядка от батареи |
+|---|---|---|
+| <img src="docs/img/dc-dc-and-box.jpg" width="300"> | <img src="docs/img/electronics-box.jpg" width="300"> | <img src="docs/img/usb-charger.jpg" width="300"> |
 
 ## Лицензия
 
